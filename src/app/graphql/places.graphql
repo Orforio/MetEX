@@ -1,0 +1,6 @@
+query Places {
+	places(sort: "name:asc") {
+		name
+		slug
+	}
+}

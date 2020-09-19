@@ -2,7 +2,7 @@
 	<a class="navbar-brand" routerLink="/">
 		mét<strong>ex</strong>
 	</a>
-	<button class="navbar-toggler" type="button" (click)="menuCollapsed = !menuCollapsed" aria-controls="navbar-collapse" [aria-expanded]="!menuCollapsed" aria-label="Toggle navigation">
+	<button class="navbar-toggler" type="button" (click)="menuCollapsed = !menuCollapsed" aria-controls="navbar-collapse" [attr.aria-expanded]="!menuCollapsed" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbar-collapse" [ngbCollapse]="menuCollapsed">
@@ -10,8 +10,8 @@
 			<li class="nav-item">
 				<a class="nav-link disabled" routerLink="/lines" (click)="menuCollapsed = true">lines</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled" routerLink="/places" (click)="menuCollapsed = true">places</a>
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" routerLink="/places" (click)="menuCollapsed = true">places</a>
 			</li>
 		</ul>
 		<ul class="navbar-nav my-0">
@@ -24,7 +24,7 @@
 	</div>
 </nav>
 <router-outlet></router-outlet>
-<div class="container-fluid">
+<footer class="container-fluid mt-4">
 	<div class="row">
 		<div class="col-sm">
 			<div class="card text-center">
@@ -34,4 +34,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</footer>
