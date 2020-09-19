@@ -24,7 +24,7 @@
     "import-spacing": true,
     "indent": {
       "options": [
-        "spaces"
+        "tabs"
       ]
     },
     "max-classes-per-file": false,
@@ -140,13 +140,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "metex",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "metex",
       "kebab-case"
     ]
   }
