@@ -52,6 +52,7 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>;
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  placeBySlug?: Maybe<Place>;
   me?: Maybe<UsersPermissionsMe>;
 };
 
@@ -218,6 +219,11 @@ export type QueryUsersConnectionArgs = {
   where?: Maybe<Scalars['JSON']>;
 };
 
+
+export type QueryPlaceBySlugArgs = {
+  slug: Scalars['String'];
+};
+
 export type Interchange = {
   __typename?: 'Interchange';
   id: Scalars['ID'];
@@ -253,7 +259,7 @@ export type Station = {
   updated_at: Scalars['DateTime'];
   name: Scalars['String'];
   description: Scalars['String'];
-  active?: Maybe<Scalars['Boolean']>;
+  active: Scalars['Boolean'];
   slug?: Maybe<Scalars['String']>;
   line?: Maybe<Line>;
   interchange?: Maybe<Interchange>;
@@ -296,7 +302,7 @@ export type Line = {
   updated_at: Scalars['DateTime'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
-  active?: Maybe<Scalars['Boolean']>;
+  active: Scalars['Boolean'];
   slug?: Maybe<Scalars['String']>;
   order: Scalars['Int'];
   created_by?: Maybe<AdminUser>;
@@ -589,8 +595,8 @@ export type Movement = {
   updated_at: Scalars['DateTime'];
   up_station?: Maybe<Station>;
   down_station?: Maybe<Station>;
-  up_allowed?: Maybe<Scalars['Boolean']>;
-  down_allowed?: Maybe<Scalars['Boolean']>;
+  up_allowed: Scalars['Boolean'];
+  down_allowed: Scalars['Boolean'];
   created_by?: Maybe<AdminUser>;
   updated_by?: Maybe<AdminUser>;
   stations?: Maybe<Array<Maybe<Station>>>;
@@ -1865,6 +1871,30 @@ export enum CacheControlScope {
   Private = 'PRIVATE'
 }
 
+export type PlaceQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type PlaceQuery = (
+  { __typename?: 'Query' }
+  & { placeBySlug?: Maybe<(
+    { __typename?: 'Place' }
+    & Pick<Place, 'name' | 'description'>
+    & { images?: Maybe<Array<Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'alternativeText' | 'url'>
+    )>>>, stations?: Maybe<Array<Maybe<(
+      { __typename?: 'Station' }
+      & Pick<Station, 'name' | 'slug'>
+      & { line?: Maybe<(
+        { __typename?: 'Line' }
+        & Pick<Line, 'id' | 'name' | 'slug'>
+      )> }
+    )>>> }
+  )> }
+);
+
 export type PlacesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1876,6 +1906,38 @@ export type PlacesQuery = (
   )>>> }
 );
 
+export const PlaceDocument = gql`
+    query Place($slug: String!) {
+  placeBySlug(slug: $slug) {
+    name
+    description
+    images {
+      alternativeText
+      url
+    }
+    stations(sort: "name:asc, line:asc") {
+      name
+      slug
+      line {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PlaceGQL extends Apollo.Query<PlaceQuery, PlaceQueryVariables> {
+    document = PlaceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const PlacesDocument = gql`
     query Places {
   places(sort: "name:asc") {

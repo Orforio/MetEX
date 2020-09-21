@@ -1,0 +1,19 @@
+query Place($slug: String!) {
+	placeBySlug(slug: $slug) {
+		name,
+		description,
+		images {
+			alternativeText,
+			url
+		},
+		stations(sort: "name:asc, line:asc") {
+			name,
+			slug,
+			line {
+				id,
+				name,
+				slug
+			}
+		}
+	}
+}

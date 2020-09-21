@@ -1,0 +1,6 @@
+<ul>
+	<li *ngFor="let station of stations" [class]="'line-' + station?.line?.id">
+		<metex-line-badge [line]="station?.line!"></metex-line-badge>
+		<a [routerLink]="['/tour', station?.line?.slug, station?.slug]">{{ station?.name }}</a>
+	</li>
+</ul>

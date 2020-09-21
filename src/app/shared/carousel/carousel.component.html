@@ -1,0 +1,5 @@
+<ngb-carousel [showNavigationArrows]="showNavigationArrows" id="carousel-station">
+	<ng-template *ngFor="let image of images" ngbSlide>
+		<img class="img-fluid" [src]="image?.url!" [alt]="image?.alternativeText!">
+	</ng-template>
+</ngb-carousel>

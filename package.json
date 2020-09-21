@@ -29,6 +29,7 @@
     "apollo-angular": "^2.0.4",
     "bootstrap": "^4.5.0",
     "graphql": "^15.3.0",
+    "ngx-markdown": "^10.1.1",
     "rxjs": "~6.6.0",
     "sass-color-helpers": "^2.1.1",
     "tslib": "^2.0.0",

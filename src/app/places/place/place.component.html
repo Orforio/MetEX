@@ -1,0 +1,22 @@
+<div class="jumbotron jumbotron-fluid py-4">
+	<div class="container-fluid">
+		<h1 class="display-3">{{ place?.name }}</h1>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8" id="content-station-photos">
+			<metex-carousel *ngIf="place?.images" [images]="place?.images!"></metex-carousel>
+		</div>
+		<div class="col-md-4" id="content-place-description">
+			<markdown [data]="place?.description" ngPreserveWhitespaces></markdown>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12" id="nav-place-stations">
+			<h2>Nearby stations</h2>
+				<metex-connections *ngIf="place?.stations?.length" [stations]="place!.stations!"></metex-connections>
+				<p *ngIf="!place?.stations">No stations nearby</p>
+		</div>
+	</div>
+</div>

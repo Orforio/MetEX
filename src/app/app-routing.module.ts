@@ -5,8 +5,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
 	{ path: 'places', loadChildren: () => import('./places/places.module').then(m => m.PlacesModule) },
+	{ path: '404', component: NotFoundComponent },
 	{ path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
-	{ path: '**', component: NotFoundComponent }
+	{ path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
