@@ -1,5 +1,5 @@
 query Lines {
-	lines(where: { active: true }) {
+	lines(where: { active: true }, sort: "order:asc") {
 		id,
 		name,
 		slug,

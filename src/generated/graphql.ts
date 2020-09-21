@@ -52,6 +52,7 @@ export type Query = {
   user?: Maybe<UsersPermissionsUser>;
   users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  lineBySlug?: Maybe<Line>;
   placeBySlug?: Maybe<Place>;
   me?: Maybe<UsersPermissionsMe>;
 };
@@ -217,6 +218,11 @@ export type QueryUsersConnectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['Int']>;
   where?: Maybe<Scalars['JSON']>;
+};
+
+
+export type QueryLineBySlugArgs = {
+  slug: Scalars['String'];
 };
 
 
@@ -1871,6 +1877,23 @@ export enum CacheControlScope {
   Private = 'PRIVATE'
 }
 
+export type LineQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+export type LineQuery = (
+  { __typename?: 'Query' }
+  & { lineBySlug?: Maybe<(
+    { __typename?: 'Line' }
+    & Pick<Line, 'id' | 'name' | 'description' | 'slug'>
+    & { stations?: Maybe<Array<Maybe<(
+      { __typename?: 'Station' }
+      & Pick<Station, 'name' | 'slug'>
+    )>>> }
+  )> }
+);
+
 export type LinesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1917,9 +1940,34 @@ export type PlacesQuery = (
   )>>> }
 );
 
+export const LineDocument = gql`
+    query Line($slug: String!) {
+  lineBySlug(slug: $slug) {
+    id
+    name
+    description
+    slug
+    stations {
+      name
+      slug
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LineGQL extends Apollo.Query<LineQuery, LineQueryVariables> {
+    document = LineDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const LinesDocument = gql`
     query Lines {
-  lines(where: {active: true}) {
+  lines(where: {active: true}, sort: "order:asc") {
     id
     name
     slug

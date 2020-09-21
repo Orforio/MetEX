@@ -1,0 +1,12 @@
+query Line($slug: String!) {
+	lineBySlug(slug: $slug) {
+		id,
+		name,
+		description,
+		slug,
+		stations {
+			name,
+			slug
+		}
+	}
+}
