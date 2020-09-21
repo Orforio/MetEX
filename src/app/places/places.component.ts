@@ -17,7 +17,7 @@ export class PlacesComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.places = this.placesGQL
-			.watch()
-			.valueChanges.pipe(map(data => data.data.places));
+			.fetch()
+			.pipe(map(data => data.data.places));
 	}
 }

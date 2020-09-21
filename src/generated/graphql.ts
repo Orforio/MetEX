@@ -1871,6 +1871,17 @@ export enum CacheControlScope {
   Private = 'PRIVATE'
 }
 
+export type LinesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LinesQuery = (
+  { __typename?: 'Query' }
+  & { lines?: Maybe<Array<Maybe<(
+    { __typename?: 'Line' }
+    & Pick<Line, 'id' | 'name' | 'slug' | 'description'>
+  )>>> }
+);
+
 export type PlaceQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -1906,6 +1917,27 @@ export type PlacesQuery = (
   )>>> }
 );
 
+export const LinesDocument = gql`
+    query Lines {
+  lines(where: {active: true}) {
+    id
+    name
+    slug
+    description
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class LinesGQL extends Apollo.Query<LinesQuery, LinesQueryVariables> {
+    document = LinesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const PlaceDocument = gql`
     query Place($slug: String!) {
   placeBySlug(slug: $slug) {

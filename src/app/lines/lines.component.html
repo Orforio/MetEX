@@ -1,0 +1,17 @@
+<div class="jumbotron jumbotron-fluid py-4">
+	<div class="container-fluid">
+		<h1 class="display-3">Lines</h1>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<div class="list-group">
+				<a *ngFor="let line of lines | async" class="list-group-item list-group-item-action line-{{ line?.id }}" [routerLink]="['./', line?.slug]">
+					<h4><metex-line-badge [line]="line"></metex-line-badge></h4>
+					<p>{{ line?.description }}</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,8 @@
+query Lines {
+	lines(where: { active: true }) {
+		id,
+		name,
+		slug,
+		description
+	}
+}
