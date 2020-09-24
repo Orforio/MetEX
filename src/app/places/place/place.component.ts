@@ -9,7 +9,7 @@ import { PlaceQuery, PlaceGQL } from '../../../generated/graphql';
 	styleUrls: ['./place.component.scss']
 })
 export class PlaceComponent implements OnInit, OnDestroy {
-	public place!: PlaceQuery['placeBySlug'];
+	public place!: PlaceQuery['place'];
 	private placeSubscription!: Subscription;
 
 	constructor(
@@ -23,8 +23,8 @@ export class PlaceComponent implements OnInit, OnDestroy {
 			.watch({ slug: this.route.snapshot.paramMap.get('slug') ?? '' })
 			.valueChanges
 			.subscribe(data => {
-				if (data?.data?.placeBySlug) {
-					this.place = data.data.placeBySlug;
+				if (data?.data?.place) {
+					this.place = data.data.place;
 				} else {
 					this.router.navigateByUrl('/404');
 				}

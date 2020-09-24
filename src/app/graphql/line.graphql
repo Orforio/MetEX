@@ -1,5 +1,5 @@
 query Line($slug: String!) {
-	lineBySlug(slug: $slug) {
+	line: lineBySlug(slug: $slug) {
 		id,
 		name,
 		description,

@@ -9,7 +9,7 @@ type ConnectionsStations = Maybe<Array<Maybe<(
 			{ __typename?: 'Line' }
 			& Pick<Line, 'id' | 'name' | 'slug'>
 		)> }
-	)>>>;
+	)>>> | null | undefined;
 
 @Component({
 	selector: 'metex-connections',

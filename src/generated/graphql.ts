@@ -54,6 +54,7 @@ export type Query = {
   usersConnection?: Maybe<UsersPermissionsUserConnection>;
   lineBySlug?: Maybe<Line>;
   placeBySlug?: Maybe<Place>;
+  stationBySlug?: Maybe<Station>;
   me?: Maybe<UsersPermissionsMe>;
 };
 
@@ -228,6 +229,12 @@ export type QueryLineBySlugArgs = {
 
 export type QueryPlaceBySlugArgs = {
   slug: Scalars['String'];
+};
+
+
+export type QueryStationBySlugArgs = {
+  lineSlug: Scalars['String'];
+  stationSlug: Scalars['String'];
 };
 
 export type Interchange = {
@@ -1877,6 +1884,27 @@ export enum CacheControlScope {
   Private = 'PRIVATE'
 }
 
+export type ConnectionsQueryVariables = Exact<{
+  interchangeId: Scalars['ID'];
+  stationId: Scalars['ID'];
+}>;
+
+
+export type ConnectionsQuery = (
+  { __typename?: 'Query' }
+  & { connections?: Maybe<(
+    { __typename?: 'Interchange' }
+    & { stations?: Maybe<Array<Maybe<(
+      { __typename?: 'Station' }
+      & Pick<Station, 'name' | 'slug'>
+      & { line?: Maybe<(
+        { __typename?: 'Line' }
+        & Pick<Line, 'id' | 'name' | 'slug'>
+      )> }
+    )>>> }
+  )> }
+);
+
 export type LineQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -1884,7 +1912,7 @@ export type LineQueryVariables = Exact<{
 
 export type LineQuery = (
   { __typename?: 'Query' }
-  & { lineBySlug?: Maybe<(
+  & { line?: Maybe<(
     { __typename?: 'Line' }
     & Pick<Line, 'id' | 'name' | 'description' | 'slug'>
     & { stations?: Maybe<Array<Maybe<(
@@ -1905,6 +1933,30 @@ export type LinesQuery = (
   )>>> }
 );
 
+export type MovementsQueryVariables = Exact<{
+  stationId: Scalars['ID'];
+}>;
+
+
+export type MovementsQuery = (
+  { __typename?: 'Query' }
+  & { upMovements?: Maybe<Array<Maybe<(
+    { __typename?: 'Movement' }
+    & { allowed: Movement['up_allowed'] }
+    & { station?: Maybe<(
+      { __typename?: 'Station' }
+      & Pick<Station, 'name' | 'slug'>
+    )> }
+  )>>>, downMovements?: Maybe<Array<Maybe<(
+    { __typename?: 'Movement' }
+    & { allowed: Movement['down_allowed'] }
+    & { station?: Maybe<(
+      { __typename?: 'Station' }
+      & Pick<Station, 'name' | 'slug'>
+    )> }
+  )>>> }
+);
+
 export type PlaceQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -1912,7 +1964,7 @@ export type PlaceQueryVariables = Exact<{
 
 export type PlaceQuery = (
   { __typename?: 'Query' }
-  & { placeBySlug?: Maybe<(
+  & { place?: Maybe<(
     { __typename?: 'Place' }
     & Pick<Place, 'name' | 'description'>
     & { images?: Maybe<Array<Maybe<(
@@ -1940,9 +1992,65 @@ export type PlacesQuery = (
   )>>> }
 );
 
+export type StationQueryVariables = Exact<{
+  lineSlug: Scalars['String'];
+  stationSlug: Scalars['String'];
+}>;
+
+
+export type StationQuery = (
+  { __typename?: 'Query' }
+  & { station?: Maybe<(
+    { __typename?: 'Station' }
+    & Pick<Station, 'id' | 'name' | 'description'>
+    & { images?: Maybe<Array<Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'alternativeText' | 'url'>
+    )>>>, interchange?: Maybe<(
+      { __typename?: 'Interchange' }
+      & Pick<Interchange, 'id'>
+    )>, line?: Maybe<(
+      { __typename?: 'Line' }
+      & Pick<Line, 'id' | 'name'>
+    )>, places?: Maybe<Array<Maybe<(
+      { __typename?: 'Place' }
+      & Pick<Place, 'name' | 'slug'>
+    )>>>, sound?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'url'>
+    )> }
+  )> }
+);
+
+export const ConnectionsDocument = gql`
+    query Connections($interchangeId: ID!, $stationId: ID!) {
+  connections: interchange(id: $interchangeId) {
+    stations(where: {id_ne: $stationId}, sort: "line:asc") {
+      name
+      slug
+      line {
+        id
+        name
+        slug
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class ConnectionsGQL extends Apollo.Query<ConnectionsQuery, ConnectionsQueryVariables> {
+    document = ConnectionsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const LineDocument = gql`
     query Line($slug: String!) {
-  lineBySlug(slug: $slug) {
+  line: lineBySlug(slug: $slug) {
     id
     name
     description
@@ -1986,9 +2094,38 @@ export const LinesDocument = gql`
       super(apollo);
     }
   }
+export const MovementsDocument = gql`
+    query Movements($stationId: ID!) {
+  upMovements: movements(where: {down_station: $stationId}, sort: "up_allowed:desc") {
+    allowed: up_allowed
+    station: up_station {
+      name
+      slug
+    }
+  }
+  downMovements: movements(where: {up_station: $stationId}, sort: "down_allowed:desc") {
+    allowed: down_allowed
+    station: down_station {
+      name
+      slug
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MovementsGQL extends Apollo.Query<MovementsQuery, MovementsQueryVariables> {
+    document = MovementsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const PlaceDocument = gql`
     query Place($slug: String!) {
-  placeBySlug(slug: $slug) {
+  place: placeBySlug(slug: $slug) {
     name
     description
     images {
@@ -2032,6 +2169,44 @@ export const PlacesDocument = gql`
   })
   export class PlacesGQL extends Apollo.Query<PlacesQuery, PlacesQueryVariables> {
     document = PlacesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const StationDocument = gql`
+    query Station($lineSlug: String!, $stationSlug: String!) {
+  station: stationBySlug(lineSlug: $lineSlug, stationSlug: $stationSlug) {
+    id
+    name
+    description
+    images {
+      alternativeText
+      url
+    }
+    interchange {
+      id
+    }
+    line {
+      id
+      name
+    }
+    places(sort: "name:asc") {
+      name
+      slug
+    }
+    sound {
+      url
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class StationGQL extends Apollo.Query<StationQuery, StationQueryVariables> {
+    document = StationDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -1,0 +1,13 @@
+query Connections($interchangeId: ID!, $stationId: ID!) {
+	connections: interchange(id: $interchangeId) {
+		stations(where: { id_ne: $stationId }, sort: "line:asc") {
+			name,
+			slug,
+			line {
+				id,
+				name,
+				slug
+			}
+		}
+	}
+}

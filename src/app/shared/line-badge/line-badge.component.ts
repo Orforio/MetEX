@@ -5,7 +5,7 @@ import { Line, Maybe } from '../../../generated/graphql';
 type LineBadgeLine = Maybe<(
 		{ __typename?: 'Line' }
 		& Pick<Line, 'name'>
-	)>;
+	)> | null | undefined;
 
 @Component({
   selector: 'metex-line-badge',

@@ -1,5 +1,5 @@
 query Place($slug: String!) {
-	placeBySlug(slug: $slug) {
+	place: placeBySlug(slug: $slug) {
 		name,
 		description,
 		images {

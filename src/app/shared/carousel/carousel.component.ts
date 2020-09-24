@@ -5,7 +5,7 @@ import { Maybe, UploadFile } from '../../../generated/graphql';
 type CarouselImages = Maybe<Array<Maybe<(
 	{ __typename?: 'UploadFile' }
 	& Pick<UploadFile, 'alternativeText' | 'url'>
-)>>>;
+)>>> | null | undefined;
 
 @Component({
   selector: 'metex-carousel',

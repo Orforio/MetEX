@@ -1,0 +1,25 @@
+query Station($lineSlug: String!, $stationSlug: String!) {
+	station: stationBySlug(lineSlug: $lineSlug, stationSlug: $stationSlug) {
+		id,
+		name,
+		description,
+		images {
+			alternativeText,
+			url
+		},
+		interchange {
+			id
+		},
+		line {
+			id,
+			name
+		},
+		places(sort: "name:asc") {
+			name,
+			slug
+		},
+		sound {
+			url
+		}
+	}
+}

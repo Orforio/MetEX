@@ -11,7 +11,7 @@ import { LineQuery, LineGQL } from '../../../generated/graphql';
 })
 export class LineComponent implements OnInit, OnDestroy {
 	public faPlusCircle = faPlusCircle;
-	public line!: LineQuery['lineBySlug'];
+	public line!: LineQuery['line'];
 	private lineSubscription!: Subscription;
 
 	constructor(
@@ -24,8 +24,8 @@ export class LineComponent implements OnInit, OnDestroy {
 		this.lineSubscription = this.lineGQL
 			.fetch({ slug: this.route.snapshot.paramMap.get('slug') ?? '' })
 			.subscribe(data => {
-				if (data?.data?.lineBySlug) {
-					this.line = data.data.lineBySlug;
+				if (data?.data?.line) {
+					this.line = data.data.line;
 				} else {
 					this.router.navigateByUrl('/404');
 				}

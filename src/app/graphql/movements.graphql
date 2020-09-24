@@ -1,0 +1,16 @@
+query Movements($stationId: ID!) {
+	upMovements: movements(where: { down_station: $stationId }, sort: "up_allowed:desc") {
+		allowed: up_allowed,
+		station: up_station {
+			name,
+			slug
+		}
+	},
+	downMovements: movements(where: { up_station: $stationId }, sort: "down_allowed:desc") {
+		allowed: down_allowed,
+		station: down_station {
+			name,
+			slug
+		}
+	}
+}

@@ -1,0 +1,6 @@
+<h2 *ngFor="let movement of movements" [class]="direction === 'up' ? 'text-left' : 'text-right'">
+	<ng-container *ngIf="direction === 'up'">&lt; </ng-container>
+	<a *ngIf="movement?.station" [routerLink]="['../', movement?.station?.slug]" [class]="movement?.allowed ? '' : 'bg-danger'">{{ movement?.station?.name }}</a>
+	<ng-container *ngIf="!movement?.station">Terminus</ng-container>
+	<ng-container *ngIf="direction === 'down'"> &gt;</ng-container>
+</h2>
