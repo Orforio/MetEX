@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TransferStateService } from '@scullyio/ng-lib';
 import { map, tap } from 'rxjs/operators';
 
 import {
@@ -26,7 +27,8 @@ export class StationComponent implements OnInit {
 		private movementsGQL: MovementsGQL,
 		private route: ActivatedRoute,
 		private router: Router,
-		private stationGQL: StationGQL
+		private stationGQL: StationGQL,
+		private transferState: TransferStateService
 	) { }
 
   ngOnInit(): void {
@@ -36,34 +38,43 @@ export class StationComponent implements OnInit {
   }
 
 	public getStation(lineSlug: string, stationSlug: string): void {
-		this.stationGQL
-			.fetch({
-				lineSlug: lineSlug ?? '',
-				stationSlug: stationSlug ?? ''
-			})
-			.pipe(
-				map(data => data.data.station),
-				tap(station => !station && this.router.navigateByUrl('/404'))
+		this.transferState.useScullyTransferState(
+			'station',
+			this.stationGQL
+				.fetch({
+					lineSlug: lineSlug ?? '',
+					stationSlug: stationSlug ?? ''
+				})
+				.pipe(
+					map(data => data.data.station),
+					tap(station => !station && this.router.navigateByUrl('/404'))
+				)
 			)
 			.subscribe(station => {
 				this.station = station;
 
 				if (this.station?.interchange) {
-					this.connectionsGQL
-						.fetch({
-							interchangeId: this.station?.interchange?.id!,
-							stationId: this.station?.id!
-						})
-						.pipe(
-							map(data => data.data.connections)
+					this.transferState.useScullyTransferState(
+						'connections',
+						this.connectionsGQL
+							.fetch({
+								interchangeId: this.station?.interchange?.id!,
+								stationId: this.station?.id!
+							})
+							.pipe(
+								map(data => data.data.connections)
+							)
 						)
 						.subscribe(connections => this.connections = connections);
 				}
 
-				this.movementsGQL
-					.fetch({
-						stationId: this.station?.id!
-					})
+				this.transferState.useScullyTransferState(
+					'movements',
+					this.movementsGQL
+						.fetch({
+							stationId: this.station?.id!
+						})
+					)
 					.subscribe(data => {
 						this.upMovements = data.data.upMovements;
 						this.downMovements = data.data.downMovements;

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { TransferStateService } from '@scullyio/ng-lib';
 import { Subscription } from 'rxjs';
 
 import { LineQuery, LineGQL } from '../../../generated/graphql';
@@ -17,12 +18,16 @@ export class LineComponent implements OnInit, OnDestroy {
 	constructor(
 		private lineGQL: LineGQL,
 		private route: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		private transferState: TransferStateService
 	) { }
 
 	ngOnInit(): void {
-		this.lineSubscription = this.lineGQL
-			.fetch({ slug: this.route.snapshot.paramMap.get('slug') ?? '' })
+		this.lineSubscription = this.transferState.useScullyTransferState(
+			'line',
+			this.lineGQL
+				.fetch({ slug: this.route.snapshot.paramMap.get('slug') ?? '' })
+			)
 			.subscribe(data => {
 				if (data?.data?.line) {
 					this.line = data.data.line;

@@ -6,6 +6,8 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
+scully.log
+/src/generated/*
 
 # dependencies
 /node_modules

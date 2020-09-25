@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		HttpClientModule,
 		MarkdownModule.forRoot(),
 		NgbModule,
+		ScullyLibModule,
 		SharedModule
 	],
 	providers: [],
