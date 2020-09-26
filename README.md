@@ -4,11 +4,9 @@ MétEX is a virtual tour of the Paris Métro, which I originally developed in Fl
 
 This is the latest iteration of the site, built statically in Angular with Scully, retrieving content from a [Strapi CMS](https://github.com/PkerUNO/MetEX-CMS). I hope to continue developing new features and update the content soon. Please feel free to report bugs or suggest new features.
 
-You can explore the following version of MétEX:
-* [The currently-updated version](http://www.metex.app/)
-* [The original university version](http://metex-uni.sblorgh.org/)
+[You can visit MétEX at metex.app](http://www.metex.app/).
 
-The PHP and Rails versions has been discontinued and are no longer live.
+The old Flash, PHP and Rails versions has been discontinued and are no longer live.
 
 Have fun exploring the Paris Métro!
 

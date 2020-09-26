@@ -7,7 +7,7 @@
 	for = "/*"
 
 	[headers.values]
-		Content-Security-Policy-Report-Only = "script-src 'self'; style-src 'self'; img-src 'self' https://*.amazonaws.com; media-src https://*.amazonaws.com; prefetch-src https://*.amazonaws.com; worker-src 'self'"
+		Content-Security-Policy = "script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.amazonaws.com; media-src https://*.amazonaws.com; prefetch-src https://*.amazonaws.com; worker-src 'self'"
 		Referrer-Policy = "no-referrer-when-downgrade"
 		X-Frame-Options = "DENY"
 		X-XSS-Protection = "1; mode=block"

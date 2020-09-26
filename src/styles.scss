@@ -1,4 +1,7 @@
-/* Importing Bootstrap SCSS file. */
+/* Bootstrap overrides */
+$enable-responsive-font-sizes: true;
+$headings-font-weight: 300;
+
 @import '~bootstrap/scss/bootstrap';
 @import '~sass-color-helpers/stylesheets/_color-helpers.scss';
 
@@ -6,7 +9,7 @@
 
 .icon-badge {
 	@include border-radius(50%);
-	padding: 0.2em;
+	padding: 0.3em 0.2em;
 	height: 2em;
 	width: 2em;
 	display: inline-block;
@@ -19,7 +22,6 @@
 	.jumbotron.line-#{$i} {
 		background-color: nth($line-colours, $i);
 		color: ch-best-color-contrast(nth($line-colours, $i), ($text-colour-white, $text-colour-black));
-		// color: contrast-color(nth($line-colours, $i), $text-colour-white, $text-colour-black);
 
 		.line-badge {
 			@extend .icon-badge;

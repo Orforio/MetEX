@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid py-4">
+<div class="jumbotron jumbotron-fluid py-4 mb-3">
 	<div class="container-fluid">
 		<h1 class="display-3">Lines</h1>
 	</div>
@@ -8,7 +8,7 @@
 		<div class="col">
 			<div class="list-group">
 				<a *ngFor="let line of lines | async" class="list-group-item list-group-item-action line-{{ line?.id }}" [routerLink]="['./', line?.slug]">
-					<h4><metex-line-badge [line]="line"></metex-line-badge></h4>
+					<metex-line-badge [line]="line" class="h4"></metex-line-badge>
 					<p>{{ line?.description }}</p>
 				</a>
 			</div>
