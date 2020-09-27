@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransferStateService } from '@scullyio/ng-lib';
 import { Subscription } from 'rxjs';
 
 import { PlaceQuery, PlaceGQL } from '../../../generated/graphql';
+import { SITE_TITLE } from '../../../settings';
 
 @Component({
 	templateUrl: './place.component.html',
@@ -17,6 +19,7 @@ export class PlaceComponent implements OnInit, OnDestroy {
 		private placeGQL: PlaceGQL,
 		private route: ActivatedRoute,
 		private router: Router,
+		private title: Title,
 		private transferState: TransferStateService
 	) { }
 
@@ -30,6 +33,7 @@ export class PlaceComponent implements OnInit, OnDestroy {
 		.subscribe(data => {
 			if (data?.data?.place) {
 				this.place = data.data.place;
+				this.title.setTitle(`${SITE_TITLE} ${this.place?.name}`);
 			} else {
 				this.router.navigateByUrl('/404');
 			}

@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { TransferStateService } from '@scullyio/ng-lib';
 import { Subscription } from 'rxjs';
 
 import { LineQuery, LineGQL } from '../../../generated/graphql';
+import { SITE_TITLE } from '../../../settings';
 
 @Component({
 	templateUrl: './line.component.html',
@@ -19,6 +21,7 @@ export class LineComponent implements OnInit, OnDestroy {
 		private lineGQL: LineGQL,
 		private route: ActivatedRoute,
 		private router: Router,
+		private title: Title,
 		private transferState: TransferStateService
 	) { }
 
@@ -31,6 +34,7 @@ export class LineComponent implements OnInit, OnDestroy {
 			.subscribe(data => {
 				if (data?.data?.line) {
 					this.line = data.data.line;
+					this.title.setTitle(`${SITE_TITLE} Line ${this.line?.name}`);
 				} else {
 					this.router.navigateByUrl('/404');
 				}

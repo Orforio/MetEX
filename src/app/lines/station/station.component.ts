@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransferStateService } from '@scullyio/ng-lib';
 import { map, tap } from 'rxjs/operators';
@@ -9,6 +10,7 @@ import {
 	StationGQL,
 	StationQuery
 } from '../../../generated/graphql';
+import { SITE_TITLE } from '../../../settings';
 
 @Component({
   templateUrl: './station.component.html',
@@ -24,6 +26,7 @@ export class StationComponent implements OnInit {
 		private route: ActivatedRoute,
 		private router: Router,
 		private stationGQL: StationGQL,
+		private title: Title,
 		private transferState: TransferStateService
 	) { }
 
@@ -48,6 +51,7 @@ export class StationComponent implements OnInit {
 			)
 			.subscribe(station => {
 				this.station = station;
+				this.title.setTitle(`${SITE_TITLE} (${this.station?.line?.name}) ${this.station?.name}`);
 
 				this.transferState.useScullyTransferState(
 					'movements',

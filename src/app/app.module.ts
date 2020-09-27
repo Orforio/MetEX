@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScullyLibModule } from '@scullyio/ng-lib';
@@ -28,7 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		ScullyLibModule,
 		SharedModule
 	],
-	providers: [],
+	providers: [Title],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
