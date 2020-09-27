@@ -24,8 +24,8 @@
 	<div class="row">
 		<div class="col-sm-6" id="nav-station-connections">
 			<h2>Connections</h2>
-			<metex-connections *ngIf="connections?.stations" [stations]="connections?.stations"></metex-connections>
-			<p *ngIf="!connections">No connections</p>
+			<metex-connections *ngIf="station?.interchange" [currentStation]="station?.id" [stations]="station?.interchange?.stations"></metex-connections>
+			<p *ngIf="!station?.interchange">No connections</p>
 		</div>
 		<div class="col-sm-6" id="nav-station-places">
 			<h2>Places</h2>

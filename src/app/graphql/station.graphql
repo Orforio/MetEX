@@ -8,7 +8,17 @@ query Station($lineSlug: String!, $stationSlug: String!) {
 			url
 		},
 		interchange {
-			id
+			id,
+			stations(sort: "line:asc") {
+				id,
+				name,
+				slug,
+				line {
+					id,
+					name,
+					slug
+				}
+			}
 		},
 		line {
 			id,

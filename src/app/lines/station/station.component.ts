@@ -4,8 +4,6 @@ import { TransferStateService } from '@scullyio/ng-lib';
 import { map, tap } from 'rxjs/operators';
 
 import {
-	ConnectionsGQL,
-	ConnectionsQuery,
 	MovementsGQL,
 	MovementsQuery,
 	StationGQL,
@@ -17,13 +15,11 @@ import {
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit {
-	public connections: ConnectionsQuery['connections'];
 	public downMovements: MovementsQuery['downMovements'];
 	public station: StationQuery['station'];
 	public upMovements: MovementsQuery['upMovements'];
 
   constructor(
-		private connectionsGQL: ConnectionsGQL,
 		private movementsGQL: MovementsGQL,
 		private route: ActivatedRoute,
 		private router: Router,
@@ -52,21 +48,6 @@ export class StationComponent implements OnInit {
 			)
 			.subscribe(station => {
 				this.station = station;
-
-				if (this.station?.interchange) {
-					this.transferState.useScullyTransferState(
-						'connections',
-						this.connectionsGQL
-							.fetch({
-								interchangeId: this.station?.interchange?.id!,
-								stationId: this.station?.id!
-							})
-							.pipe(
-								map(data => data.data.connections)
-							)
-						)
-						.subscribe(connections => this.connections = connections);
-				}
 
 				this.transferState.useScullyTransferState(
 					'movements',

@@ -4,7 +4,7 @@ import { Line, Maybe, Station } from '../../../generated/graphql';
 
 type ConnectionsStations = Maybe<Array<Maybe<(
 		{ __typename?: 'Station' }
-		& Pick<Station, 'name' | 'slug'>
+		& Pick<Station, 'id' | 'name' | 'slug'>
 		& { line?: Maybe<(
 			{ __typename?: 'Line' }
 			& Pick<Line, 'id' | 'name' | 'slug'>
@@ -17,6 +17,7 @@ type ConnectionsStations = Maybe<Array<Maybe<(
 	styleUrls: ['./connections.component.scss']
 })
 export class ConnectionsComponent implements OnInit {
+	@Input() public currentStation? = '';
 	@Input() public stations: ConnectionsStations = [];
 
 	constructor() { }
