@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AmbientSoundComponent } from './ambient-sound/ambient-sound.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -23,7 +23,7 @@ import { NearbyPlacesComponent } from './nearby-places/nearby-places.component';
 	imports: [
 		CommonModule,
 		FontAwesomeModule,
-		NgbModule,
+		NgbCarouselModule,
 		RouterModule
 	],
 	exports: [

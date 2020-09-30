@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Line, Maybe, Station } from '../../../generated/graphql';
 
@@ -16,12 +16,9 @@ type ConnectionsStations = Maybe<Array<Maybe<(
 	templateUrl: './connections.component.html',
 	styleUrls: ['./connections.component.scss']
 })
-export class ConnectionsComponent implements OnInit {
+export class ConnectionsComponent {
 	@Input() public currentStation? = '';
 	@Input() public stations: ConnectionsStations = [];
 
 	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

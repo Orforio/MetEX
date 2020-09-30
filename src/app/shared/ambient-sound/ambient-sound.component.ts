@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faHeadphonesAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { Maybe, UploadFile } from '../../../generated/graphql';
@@ -13,12 +13,9 @@ type AmbientSound = Maybe<(
 	templateUrl: './ambient-sound.component.html',
 	styleUrls: ['./ambient-sound.component.scss']
 })
-export class AmbientSoundComponent implements OnInit {
+export class AmbientSoundComponent {
 	@Input() public sound!: AmbientSound;
 	public faHeadphonesAlt = faHeadphonesAlt;
 
 	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

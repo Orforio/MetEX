@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Maybe, Place } from '../../../generated/graphql';
 
@@ -12,11 +12,8 @@ type NearbyPlaces = Maybe<Array<Maybe<(
 	templateUrl: './nearby-places.component.html',
 	styleUrls: ['./nearby-places.component.scss']
 })
-export class NearbyPlacesComponent implements OnInit {
+export class NearbyPlacesComponent {
 	@Input() public places: NearbyPlaces;
 
 	constructor() { }
-
-	ngOnInit(): void {
-	}
 }

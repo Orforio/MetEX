@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -24,7 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 		GraphQLModule,
 		HttpClientModule,
 		MarkdownModule.forRoot(),
-		NgbModule,
+		NgbCollapseModule,
 		ScullyLibModule,
 		SharedModule
 	],

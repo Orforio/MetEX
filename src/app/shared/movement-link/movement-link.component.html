@@ -1,6 +1,12 @@
 <h2 *ngFor="let movement of movements" [class]="direction === 'up' ? 'text-left' : 'text-right'">
-	<ng-container *ngIf="direction === 'up'"><fa-icon [icon]="movement?.allowed ? faChevronCircleLeft : faTimesCircle" class="mr-2"></fa-icon></ng-container>
+	<ng-container *ngIf="direction === 'up'">
+		<fa-icon [icon]="movement?.allowed ? faChevronCircleLeft : faTimesCircle" class="mr-2"></fa-icon>
+		<span class="sr-only">Up <ng-container *ngIf="!movement?.allowed">(not allowed)</ng-container></span>
+	</ng-container>
 	<a *ngIf="movement?.station" [routerLink]="['../', movement?.station?.slug]" [class]="movement?.allowed ? '' : 'bg-danger text-white p-1'">{{ movement?.station?.name }}</a>
 	<ng-container *ngIf="!movement?.station">Terminus</ng-container>
-	<ng-container *ngIf="direction === 'down'"><fa-icon [icon]="movement?.allowed ? faChevronCircleRight : faTimesCircle" class="ml-2"></fa-icon></ng-container>
+	<ng-container *ngIf="direction === 'down'">
+		<fa-icon [icon]="movement?.allowed ? faChevronCircleRight : faTimesCircle" class="ml-2"></fa-icon>
+		<span class="sr-only">Down <ng-container *ngIf="!movement?.allowed">(not allowed)</ng-container></span>
+	</ng-container>
 </h2>

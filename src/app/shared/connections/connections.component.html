@@ -1,7 +1,7 @@
 <ul>
 	<ng-container *ngFor="let station of stations">
 		<li *ngIf="station?.id !== currentStation" [class]="'line-' + station?.line?.id">
-			<metex-line-badge [line]="station?.line!"></metex-line-badge>
+			<metex-line-badge [line]="station?.line"></metex-line-badge>
 			<a [routerLink]="['/lines', station?.line?.slug, station?.slug]">{{ station?.name }}</a>
 		</li>
 	</ng-container>

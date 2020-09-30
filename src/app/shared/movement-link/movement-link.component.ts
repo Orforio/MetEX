@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faChevronCircleLeft, faChevronCircleRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Maybe, Movement, Station } from '../../../generated/graphql';
@@ -17,7 +17,7 @@ type MovementLinkMovements = Maybe<Array<Maybe<(
   templateUrl: './movement-link.component.html',
   styleUrls: ['./movement-link.component.scss']
 })
-export class MovementLinkComponent implements OnInit {
+export class MovementLinkComponent {
 	@Input() public direction!: 'up' | 'down';
 	@Input() public movements!: MovementLinkMovements;
 	public faChevronCircleLeft = faChevronCircleLeft;
@@ -25,7 +25,4 @@ export class MovementLinkComponent implements OnInit {
 	public faTimesCircle = faTimesCircle;
 
 	constructor() { }
-
-	ngOnInit(): void {
-	}
 }
