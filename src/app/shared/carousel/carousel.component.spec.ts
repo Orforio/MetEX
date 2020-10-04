@@ -5,7 +5,7 @@ import { MockComponent } from 'ng-mocks';
 import { CarouselComponent } from './carousel.component';
 import { imageFactory } from '../../fixtures/files.fixtures';
 
-fdescribe('CarouselComponent', () => {
+describe('CarouselComponent', () => {
 	let compiled: HTMLElement;
 	let component: CarouselComponent;
 	let fixture: ComponentFixture<CarouselComponent>;

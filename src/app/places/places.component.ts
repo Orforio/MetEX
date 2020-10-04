@@ -14,7 +14,7 @@ import { SITE_TITLE } from '../../settings';
 })
 export class PlacesComponent implements OnInit {
 	public faPlusCircle = faPlusCircle;
-	public places!: Observable<PlacesQuery['places']>;
+	public places$!: Observable<PlacesQuery['places']>;
 
 	constructor(
 		private placesGQL: PlacesGQL,
@@ -25,7 +25,7 @@ export class PlacesComponent implements OnInit {
 	ngOnInit(): void {
 		this.title.setTitle(`${SITE_TITLE} Places of interest`);
 
-		this.places = this.transferState.useScullyTransferState(
+		this.places$ = this.transferState.useScullyTransferState(
 			'places',
 			this.placesGQL
 				.fetch()
