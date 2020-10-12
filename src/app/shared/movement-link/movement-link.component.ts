@@ -13,9 +13,9 @@ type MovementLinkMovements = Maybe<Array<Maybe<(
 )>>> | null | undefined;
 
 @Component({
-  selector: 'metex-movement-link',
-  templateUrl: './movement-link.component.html',
-  styleUrls: ['./movement-link.component.scss']
+	selector: 'metex-movement-link',
+	templateUrl: './movement-link.component.html',
+	styleUrls: ['./movement-link.component.scss']
 })
 export class MovementLinkComponent {
 	@Input() public direction!: 'up' | 'down';

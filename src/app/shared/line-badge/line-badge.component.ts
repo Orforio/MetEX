@@ -8,21 +8,21 @@ type LineBadgeLine = Maybe<(
 	)> | null | undefined;
 
 @Component({
-  selector: 'metex-line-badge',
-  templateUrl: './line-badge.component.html',
-  styleUrls: ['./line-badge.component.scss']
+	selector: 'metex-line-badge',
+	templateUrl: './line-badge.component.html',
+	styleUrls: ['./line-badge.component.scss']
 })
 export class LineBadgeComponent implements OnInit {
 	@Input() public line: LineBadgeLine = null;
 	public lineNumber = '';
 	public lineSuffix = '';
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit(): void {
+	ngOnInit(): void {
 		const lineNumberArray = this.line?.name?.match(/^(\d+)/);
 		const lineSuffixArray = this.line?.name?.match(/\d+([a-z]+)$/);
 		this.lineNumber = lineNumberArray?.length ? lineNumberArray[1] : '';
 		this.lineSuffix = lineSuffixArray?.length ? lineSuffixArray[1] : '';
-  }
+	}
 }

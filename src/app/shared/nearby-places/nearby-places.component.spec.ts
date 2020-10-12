@@ -6,32 +6,32 @@ import { placeFactory } from '../../fixtures/places.fixtures';
 
 describe('NearbyPlacesComponent', () => {
 	let compiled: HTMLElement;
-  let component: NearbyPlacesComponent;
-  let fixture: ComponentFixture<NearbyPlacesComponent>;
+	let component: NearbyPlacesComponent;
+	let fixture: ComponentFixture<NearbyPlacesComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NearbyPlacesComponent ],
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [ NearbyPlacesComponent ],
 			imports: [ RouterTestingModule ]
-    })
-    .compileComponents();
-  });
+		})
+		.compileComponents();
+	});
 
-  beforeEach(() => {
+	beforeEach(() => {
 		// Arrange
-    fixture = TestBed.createComponent(NearbyPlacesComponent);
-    component = fixture.componentInstance;
+		fixture = TestBed.createComponent(NearbyPlacesComponent);
+		component = fixture.componentInstance;
 		component.places = placeFactory.buildList(3);
 
 		// Act
-    fixture.detectChanges();
+		fixture.detectChanges();
 		compiled = fixture.debugElement.nativeElement;
-  });
+	});
 
-  it('should create', () => {
+	it('should create', () => {
 		// Assert
-    expect(component).toBeTruthy();
-  });
+		expect(component).toBeTruthy();
+	});
 
 	it('should display a list of Places', () => {
 		// Assert

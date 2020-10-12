@@ -8,17 +8,17 @@ type CarouselImages = Maybe<Array<Maybe<(
 )>>> | null | undefined;
 
 @Component({
-  selector: 'metex-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+	selector: 'metex-carousel',
+	templateUrl: './carousel.component.html',
+	styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
 	@Input() public images: CarouselImages = [];
 	public showNavigationArrows = true;
 
-  constructor() { }
+	constructor() { }
 
-  ngOnInit(): void {
+	ngOnInit(): void {
 		this.showNavigationArrows = !!(this.images?.length && this.images.length > 1);
-  }
+	}
 }

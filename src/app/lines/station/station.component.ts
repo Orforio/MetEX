@@ -12,13 +12,13 @@ import {
 import { SITE_TITLE } from '../../../settings';
 
 @Component({
-  templateUrl: './station.component.html',
-  styleUrls: ['./station.component.scss']
+	templateUrl: './station.component.html',
+	styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit {
 	public station$!: Observable<StationQuery>;
 
-  constructor(
+	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private stationGQL: StationGQL,
@@ -26,7 +26,7 @@ export class StationComponent implements OnInit {
 		private transferState: TransferStateService
 	) { }
 
-  ngOnInit(): void {
+	ngOnInit(): void {
 		this.route.paramMap.subscribe(params => {
 			this.station$ = this.transferState.useScullyTransferState(
 				'station',
@@ -41,11 +41,11 @@ export class StationComponent implements OnInit {
 							if (data.station) {
 								this.title.setTitle(`${SITE_TITLE} (${data.station?.line?.name}) ${data.station?.name}`);
 							} else {
-								this.router.navigateByUrl('/404')
+								this.router.navigateByUrl('/404');
 							}
 						})
 					)
 				);
 		});
-  }
+	}
 }

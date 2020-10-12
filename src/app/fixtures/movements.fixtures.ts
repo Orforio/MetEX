@@ -15,17 +15,17 @@ export const movementFactory = Factory.Sync.makeFactory<Movement>({
 });
 
 export const coherentMovementsFactory = (upStations = 1, downStations = 1, allowed = true, terminus = false) => {
-	let upStationArray = [];
-	let downStationArray = [];
+	const upStationArray = [];
+	const downStationArray = [];
 
-	for(let i = 0; i < upStations; i++) {
+	for (let i = 0; i < upStations; i++) {
 		upStationArray.push({
 			allowed,
 			station: (terminus ? null : stationFactory.build())
 		});
 	}
 
-	for(let i = 0; i < downStations; i++) {
+	for (let i = 0; i < downStations; i++) {
 		downStationArray.push({
 			allowed,
 			station: (terminus ? null : stationFactory.build())
