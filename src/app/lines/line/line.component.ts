@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { TransferStateService } from '@scullyio/ng-lib';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 import { LineQuery, LineGQL } from '../../../generated/graphql';
 import { SITE_TITLE } from '../../../settings';
@@ -12,10 +13,9 @@ import { SITE_TITLE } from '../../../settings';
 	templateUrl: './line.component.html',
 	styleUrls: ['./line.component.scss']
 })
-export class LineComponent implements OnInit, OnDestroy {
+export class LineComponent implements OnInit {
 	public faPlusCircle = faPlusCircle;
-	public line!: LineQuery['line'];
-	private lineSubscription!: Subscription;
+	public line$!: Observable<LineQuery['line']>;
 
 	constructor(
 		private lineGQL: LineGQL,
@@ -26,22 +26,20 @@ export class LineComponent implements OnInit, OnDestroy {
 	) { }
 
 	ngOnInit(): void {
-		this.lineSubscription = this.transferState.useScullyTransferState(
+		this.line$ = this.transferState.useScullyTransferState(
 			'line',
 			this.lineGQL
 				.fetch({ slug: this.route.snapshot.paramMap.get('slug') ?? '' })
-			)
-			.subscribe(data => {
-				if (data?.data?.line) {
-					this.line = data.data.line;
-					this.title.setTitle(`${SITE_TITLE} Line ${this.line?.name}`);
-				} else {
-					this.router.navigateByUrl('/404');
-				}
-			});
-	}
-
-	ngOnDestroy(): void {
-		this.lineSubscription.unsubscribe();
+				.pipe(
+					map(data => data.data.line),
+					tap(line => {
+						if (line) {
+							this.title.setTitle(`${SITE_TITLE} Line ${line?.name}`);
+						} else {
+							this.router.navigateByUrl('/404');
+						}
+					})
+				)
+			);
 	}
 }

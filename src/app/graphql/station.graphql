@@ -31,5 +31,19 @@ query Station($lineSlug: String!, $stationSlug: String!) {
 		sound {
 			url
 		}
-	}
+	},
+	upMovements: movementsBySlugAndDirection(lineSlug: $lineSlug, stationSlug: $stationSlug, up: true) {
+		allowed: up_allowed,
+		station: up_station {
+			name,
+			slug
+		}
+	},
+	downMovements: movementsBySlugAndDirection(lineSlug: $lineSlug, stationSlug: $stationSlug, up: false) {
+		allowed: down_allowed,
+		station: down_station {
+			name,
+			slug
+		}
+	},
 }

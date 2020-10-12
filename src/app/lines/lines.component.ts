@@ -12,7 +12,7 @@ import { SITE_TITLE } from '../../settings';
 	styleUrls: ['./lines.component.scss']
 })
 export class LinesComponent implements OnInit {
-	public lines!: Observable<LinesQuery['lines']>;
+	public lines$!: Observable<LinesQuery['lines']>;
 
 	constructor(
 		private linesGQL: LinesGQL,
@@ -23,7 +23,7 @@ export class LinesComponent implements OnInit {
 	ngOnInit(): void {
 		this.title.setTitle(`${SITE_TITLE} Lines`);
 
-		this.lines = this.transferState.useScullyTransferState(
+		this.lines$ = this.transferState.useScullyTransferState(
 			'lines',
 			this.linesGQL
 				.fetch()

@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransferStateService } from '@scullyio/ng-lib';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import {
-	MovementsGQL,
-	MovementsQuery,
 	StationGQL,
 	StationQuery
 } from '../../../generated/graphql';
@@ -17,12 +16,9 @@ import { SITE_TITLE } from '../../../settings';
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit {
-	public downMovements: MovementsQuery['downMovements'];
-	public station: StationQuery['station'];
-	public upMovements: MovementsQuery['upMovements'];
+	public station$!: Observable<StationQuery>;
 
   constructor(
-		private movementsGQL: MovementsGQL,
 		private route: ActivatedRoute,
 		private router: Router,
 		private stationGQL: StationGQL,
@@ -32,38 +28,24 @@ export class StationComponent implements OnInit {
 
   ngOnInit(): void {
 		this.route.paramMap.subscribe(params => {
-			this.getStation(params.get('lineSlug') ?? '', params.get('stationSlug') ?? '');
-		});
-  }
-
-	public getStation(lineSlug: string, stationSlug: string): void {
-		this.transferState.useScullyTransferState(
-			'station',
-			this.stationGQL
-				.fetch({
-					lineSlug: lineSlug ?? '',
-					stationSlug: stationSlug ?? ''
-				})
-				.pipe(
-					map(data => data.data.station),
-					tap(station => !station && this.router.navigateByUrl('/404'))
-				)
-			)
-			.subscribe(station => {
-				this.station = station;
-				this.title.setTitle(`${SITE_TITLE} (${this.station?.line?.name}) ${this.station?.name}`);
-
-				this.transferState.useScullyTransferState(
-					'movements',
-					this.movementsGQL
-						.fetch({
-							stationId: this.station?.id!
+			this.station$ = this.transferState.useScullyTransferState(
+				'station',
+				this.stationGQL
+					.fetch({
+						lineSlug: params.get('lineSlug') ?? '',
+						stationSlug: params.get('stationSlug') ?? ''
+					})
+					.pipe(
+						map(data => data.data),
+						tap(data => {
+							if (data.station) {
+								this.title.setTitle(`${SITE_TITLE} (${data.station?.line?.name}) ${data.station?.name}`);
+							} else {
+								this.router.navigateByUrl('/404')
+							}
 						})
 					)
-					.subscribe(data => {
-						this.upMovements = data.data.upMovements;
-						this.downMovements = data.data.downMovements;
-					});
-			});
-	}
+				);
+		});
+  }
 }

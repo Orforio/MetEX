@@ -1,36 +1,38 @@
-<div class="jumbotron jumbotron-fluid line-{{ station?.line?.id }} py-4 mb-3">
-	<div class="container-fluid">
-		<h1 class="display-3"><metex-line-badge *ngIf="station?.line" [line]="station?.line"></metex-line-badge> {{ station?.name }}</h1>
-	</div>
-</div>
-<div class="container-fluid line-{{ station?.line?.id }}">
-	<div class="row" id="nav-station">
-		<div class="col-sm-6" id="nav-station-up">
-			<metex-movement-link *ngIf="upMovements" direction="up" [movements]="upMovements"></metex-movement-link>
-		</div>
-		<div class="col-sm-6" id="nav-station-down">
-			<metex-movement-link *ngIf="downMovements" direction="down" [movements]="downMovements"></metex-movement-link>
+<ng-container *ngIf="station$ | async as station">
+	<div class="jumbotron jumbotron-fluid line-{{ station.station?.line?.id }} py-4 mb-3">
+		<div class="container-fluid">
+			<h1 class="display-3"><metex-line-badge *ngIf="station.station?.line" [line]="station.station?.line"></metex-line-badge> {{ station.station?.name }}</h1>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-8" id="content-station-photos">
-			<metex-carousel *ngIf="station?.images" [images]="station?.images"></metex-carousel>
+	<div class="container-fluid line-{{ station.station?.line?.id }}">
+		<div class="row" id="nav-station">
+			<div class="col-sm-6" id="nav-station-up">
+				<metex-movement-link *ngIf="station.upMovements" direction="up" [movements]="station.upMovements"></metex-movement-link>
+			</div>
+			<div class="col-sm-6" id="nav-station-down">
+				<metex-movement-link *ngIf="station.downMovements" direction="down" [movements]="station.downMovements"></metex-movement-link>
+			</div>
 		</div>
-		<div class="col-md-4" id="content-station-description">
-			<metex-ambient-sound *ngIf="station?.sound" [sound]="station?.sound"></metex-ambient-sound>
-			<markdown [data]="station?.description" ngPreserveWhitespaces></markdown>
+		<div class="row">
+			<div class="col-md-8" id="content-station-photos">
+				<metex-carousel *ngIf="station.station?.images" [images]="station.station?.images"></metex-carousel>
+			</div>
+			<div class="col-md-4" id="content-station-description">
+				<metex-ambient-sound *ngIf="station.station?.sound" [sound]="station.station?.sound"></metex-ambient-sound>
+				<markdown [data]="station.station?.description" ngPreserveWhitespaces></markdown>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6" id="nav-station-connections">
+				<h2>Connections</h2>
+				<metex-connections *ngIf="station.station?.interchange" [currentStation]="station.station?.id" [stations]="station.station?.interchange?.stations"></metex-connections>
+				<p *ngIf="!station.station?.interchange">No connections</p>
+			</div>
+			<div class="col-sm-6" id="nav-station-places">
+				<h2>Places</h2>
+				<metex-nearby-places *ngIf="station.station?.places && station.station?.places?.length" [places]="station.station?.places"></metex-nearby-places>
+				<p *ngIf="!station.station?.places || !station.station?.places?.length">No places nearby</p>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-6" id="nav-station-connections">
-			<h2>Connections</h2>
-			<metex-connections *ngIf="station?.interchange" [currentStation]="station?.id" [stations]="station?.interchange?.stations"></metex-connections>
-			<p *ngIf="!station?.interchange">No connections</p>
-		</div>
-		<div class="col-sm-6" id="nav-station-places">
-			<h2>Places</h2>
-			<metex-nearby-places *ngIf="station?.places && station?.places?.length" [places]="station?.places"></metex-nearby-places>
-			<p *ngIf="!station?.places || !station?.places?.length">No places nearby</p>
-		</div>
-	</div>
-</div>
+</ng-container>
