@@ -7,6 +7,7 @@ describe('App Skeleton', () => {
 
 	beforeEach(() => {
 		page = new AppPage();
+		browser.driver.manage().window().setSize(400, 700);
 	});
 
 	afterEach(async () => {
@@ -21,6 +22,7 @@ describe('App Skeleton', () => {
 			// Arrange
 			// Act
 			page.navigateTo();
+			page.toggleNavBar();
 		});
 
 		it('should display', () => {
@@ -32,28 +34,32 @@ describe('App Skeleton', () => {
 			// Assert
 			expect(page.getNavBarHomeLink()).toBeDefined();
 			expect(page.getNavBarHomeLink().getText()).toMatch('métex');
-			expect(page.getNavBarHomeLink().getAttribute('href')).toMatch('/');
+			page.getNavBarHomeLink().click();
+			expect(browser.driver.getCurrentUrl()).toMatch('/');
 		});
 
 		it('should link to Lines', () => {
 			// Assert
 			expect(page.getNavBarLinesLink()).toBeDefined();
 			expect(page.getNavBarLinesLink().getText()).toMatch('lines');
-			expect(page.getNavBarLinesLink().getAttribute('href')).toMatch('/lines');
+			page.getNavBarLinesLink().click();
+			expect(browser.driver.getCurrentUrl()).toMatch('/lines');
 		});
 
 		it('should link to Places', () => {
 			// Assert
 			expect(page.getNavBarPlacesLink()).toBeDefined();
 			expect(page.getNavBarPlacesLink().getText()).toMatch('places');
-			expect(page.getNavBarPlacesLink().getAttribute('href')).toMatch('/places');
+			page.getNavBarPlacesLink().click();
+			expect(browser.driver.getCurrentUrl()).toMatch('/places');
 		});
 
 		it('should link to Github', () => {
 			// Assert
 			expect(page.getNavBarGithubLink()).toBeDefined();
 			expect(page.getNavBarGithubLink().getText()).toMatch('Github');
-			expect(page.getNavBarGithubLink().getAttribute('href')).toMatch('https://github.com/PkerUNO/MetEX');
+			page.getNavBarGithubLink().click();
+			expect(browser.driver.getCurrentUrl()).toMatch('https://github.com/PkerUNO/MetEX');
 		});
 	});
 

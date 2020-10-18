@@ -14,7 +14,6 @@ export class AppPage {
 	}
 
 	getNavBarLinks() {
-		!this.getNavBarCollapseButton().getAttribute('aria-expanded') && this.toggleNavBar();
 		return this.getNavBar().all(by.tagName('a'));
 	}
 
