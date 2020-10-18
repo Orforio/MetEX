@@ -1,11 +1,35 @@
 import { browser, by, element } from 'protractor';
 
 export class AppPage {
-	navigateTo(): Promise<unknown> {
-		return browser.get(browser.baseUrl) as Promise<unknown>;
+	navigateTo() {
+		return browser.get('/');
 	}
 
-	getTitleText(): Promise<string> {
-		return element(by.css('app-root .content span')).getText() as Promise<string>;
+	getNavBar() {
+		return element(by.css('nav.navbar'));
+	}
+
+	getNavBarLinks() {
+		return this.getNavBar().all(by.tagName('a'));
+	}
+
+	getNavBarHomeLink() {
+		return this.getNavBarLinks().get(0);
+	}
+
+	getNavBarLinesLink() {
+		return this.getNavBarLinks().get(1);
+	}
+
+	getNavBarPlacesLink() {
+		return this.getNavBarLinks().get(2);
+	}
+
+	getNavBarGithubLink() {
+		return this.getNavBarLinks().get(3);
+	}
+
+	getFooter() {
+		return element(by.css('footer'));
 	}
 }
