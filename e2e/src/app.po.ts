@@ -9,7 +9,12 @@ export class AppPage {
 		return element(by.css('nav.navbar'));
 	}
 
+	getNavBarCollapseButton() {
+		return this.getNavBar().element(by.tagName('button'));
+	}
+
 	getNavBarLinks() {
+		!this.getNavBarCollapseButton().getAttribute('aria-expanded') && this.toggleNavBar();
 		return this.getNavBar().all(by.tagName('a'));
 	}
 
@@ -30,6 +35,10 @@ export class AppPage {
 	}
 
 	getFooter() {
-		return element(by.css('footer'));
+		return element(by.tagName('footer'));
+	}
+
+	toggleNavBar() {
+		this.getNavBarCollapseButton().click();
 	}
 }

@@ -6,6 +6,6 @@ export class HomePage {
 	}
 
 	getHeading() {
-		return element(by.css('h1'));
+		return element(by.tagName('h1'));
 	}
 }
