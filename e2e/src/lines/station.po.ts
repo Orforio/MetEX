@@ -5,8 +5,13 @@ export class StationPage {
 		return browser.get('/lines/3bis/gambetta');
 	}
 
+	navigateToTour() {
+		return browser.get('/tour/3bis/gambetta');
+	}
+
 	sampleStation = {
 		name: 'Gambetta',
+		urlSlug: 'gambetta',
 		line: '3bis',
 		description: 'The tunnel-like nature of this station is a give-away as to its old use',
 		upStations: [

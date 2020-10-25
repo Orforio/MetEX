@@ -19,6 +19,14 @@ describe('Station Page', () => {
 		} as logging.Entry));
 	});
 
+	it('should redirect when using a legacy URL', () => {
+		// Act
+		page.navigateToTour();
+
+		// Assert
+		expect(browser.getCurrentUrl()).toMatch(`/lines/${page.sampleStation.line}/${page.sampleStation.urlSlug}`);
+	});
+
 	it('should display the heading', () => {
 		// Assert
 		expect(page.getHeading().getText()).toMatch(`${page.sampleStation.line} ${page.sampleStation.name}`);
