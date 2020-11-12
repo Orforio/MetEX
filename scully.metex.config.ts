@@ -24,6 +24,11 @@ setPluginConfig(SitemapPlugin, {
 	],
 	ignoredRoutes: ['/404'],
 	routes: {
+    '/blog/:slug': {
+			changeFreq: 'weekly',
+			priority: '0.9',
+			sitemapFilename: 'sitemap-blog.xml',
+		},
 		'/lines/:slug': {
 			changeFreq: 'monthly',
 			priority: '0.9',
@@ -48,6 +53,12 @@ export const config: ScullyConfig = {
 	outDir: './dist/static',
 	defaultPostRenderers: [Http404Plugin],
 	routes: {
+		'/blog/:slug': {
+			type: 'contentFolder',
+			slug: {
+				folder: './blog'
+			}
+		},
 		'/lines/:slug': {
 			type: 'json',
 			slug: {

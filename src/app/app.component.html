@@ -15,6 +15,9 @@
 			</li>
 		</ul>
 		<ul class="navbar-nav">
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" routerLink="/blog" (click)="menuCollapsed = true">dev blog</a>
+			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="https://github.com/PkerUNO/MetEX" title="Github">
 					<fa-icon [icon]="faGithub"></fa-icon>
@@ -30,7 +33,7 @@
 		<div class="col-sm">
 			<div class="card bg-light text-center">
 				<div class="card-body">
-					<small>&copy;2005-2020 Richard Whittaker - Milestone <em>{{ milestone }}</em> - <a href="https://github.com/PkerUNO/MetEX/issues">Please report any bugs on Github</a></small>
+					<small>&copy;2005-2020 <a routerLink="/blog/contact">Richard Whittaker</a> - Milestone <em>{{ milestone }}</em> - <a href="https://github.com/PkerUNO/MetEX/issues">Please report any bugs on Github</a></small>
 				</div>
 			</div>
 		</div>

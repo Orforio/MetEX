@@ -13,7 +13,8 @@
     "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
     "codegen": "graphql-codegen --config codegen.yml",
     "scully": "scully",
-    "scully:serve": "scully serve"
+    "scully:serve": "scully serve",
+    "blog": "ng generate @scullyio/init:post --metaDataFile='./scully-blog.yml'"
   },
   "private": true,
   "dependencies": {

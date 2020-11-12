@@ -29,12 +29,20 @@ export class AppPage {
 		return this.getNavBarLinks().get(2);
 	}
 
-	getNavBarGithubLink() {
+	getNavBarBlogLink() {
 		return this.getNavBarLinks().get(3);
+	}
+
+	getNavBarGithubLink() {
+		return this.getNavBarLinks().get(4);
 	}
 
 	getFooter() {
 		return element(by.tagName('footer'));
+	}
+
+	getFooterContactLink() {
+		return element(by.linkText('Richard Whittaker'));
 	}
 
 	toggleNavBar() {

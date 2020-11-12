@@ -1,0 +1,18 @@
+<div class="jumbotron jumbotron-fluid py-4 mb-3">
+	<div class="container-fluid">
+		<h1 class="display-3">Development blog</h1>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col">
+			<h2>
+				{{(entry$ | async)?.title}}
+				<small>
+					<span class="badge badge-secondary">{{(entry$ | async)?.date | date:'d MMM yyyy' }}</span>
+				</small>
+			</h2>
+			<scully-content></scully-content>
+		</div>
+	</div>
+</div>
