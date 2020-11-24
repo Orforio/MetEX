@@ -2,6 +2,8 @@ import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
 import { getHttp404Plugin } from '@gammastream/scully-plugin-http404';
 import { getSitemapPlugin } from '@gammastream/scully-plugin-sitemap';
 
+require('dotenv').config();
+
 const Http404Plugin = getHttp404Plugin();
 const SitemapPlugin = getSitemapPlugin();
 
@@ -62,25 +64,25 @@ export const config: ScullyConfig = {
 		'/lines/:slug': {
 			type: 'json',
 			slug: {
-				url: 'https://metex-cms.herokuapp.com/lines?_where[active]=true',
+				url: `${process.env.API_URL}/lines?_where[active]=true`,
 				property: 'slug'
 			}
 		},
 		'/lines/:lineSlug/:stationSlug': {
 			type: 'json',
 			lineSlug: {
-				url: 'https://metex-cms.herokuapp.com/lines?_where[active]=true',
+				url: `${process.env.API_URL}/lines?_where[active]=true`,
 				property: 'slug'
 			},
 			stationSlug: {
-				url: 'https://metex-cms.herokuapp.com/stations?line.slug=${lineSlug}',
+				url: `${process.env.API_URL}/stations?line.slug=` + '${lineSlug}',
 				property: 'slug'
 			},
 		},
 		'/places/:slug': {
 			type: 'json',
 			slug: {
-				url: 'https://metex-cms.herokuapp.com/places',
+				url: `${process.env.API_URL}/places`,
 				property: 'slug'
 			}
 		}
