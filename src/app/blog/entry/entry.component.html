@@ -3,16 +3,16 @@
 		<h1 class="display-3">Development blog</h1>
 	</div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="entry$ | async as entry">
 	<div class="row">
 		<div class="col">
 			<h2>
-				{{(entry$ | async)?.title}}
+				{{entry?.title}}
 				<small>
-					<span class="badge badge-secondary">{{(entry$ | async)?.date | date:'d MMM yyyy' }}</span>
+					<span class="badge badge-secondary">{{entry?.date | date:'d MMM yyyy' }}</span>
 				</small>
 			</h2>
-			<scully-content></scully-content>
+			<markdown [data]="entry?.entry" ngPreserveWhitespaces></markdown>
 		</div>
 	</div>
 </div>

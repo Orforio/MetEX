@@ -7,6 +7,7 @@
 /bazel-out
 scully.log
 /src/generated
+graphql.schema.json
 
 # dependencies
 /node_modules

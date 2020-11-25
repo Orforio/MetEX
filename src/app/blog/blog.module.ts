@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ScullyLibModule } from '@scullyio/ng-lib';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
@@ -14,7 +14,7 @@ import { EntryComponent } from './entry/entry.component';
 	imports: [
 		CommonModule,
 		BlogRoutingModule,
-		ScullyLibModule
+		MarkdownModule.forChild()
 	]
 })
 export class BlogModule {}

@@ -56,9 +56,10 @@ export const config: ScullyConfig = {
 	defaultPostRenderers: [Http404Plugin],
 	routes: {
 		'/blog/:slug': {
-			type: 'contentFolder',
+			type: 'json',
 			slug: {
-				folder: './blog'
+				url: `${process.env.API_URL}/blogs`,
+				property: 'slug'
 			}
 		},
 		'/lines/:slug': {

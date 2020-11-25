@@ -1,0 +1,8 @@
+query Blogs {
+	blogs(sort: "date:desc") {
+		title
+		description
+		date
+		slug
+	}
+}

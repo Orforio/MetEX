@@ -1,0 +1,7 @@
+query Blog($slug: String!) {
+	blog: blogBySlug(slug: $slug) {
+		title,
+		date,
+		entry
+	}
+}
