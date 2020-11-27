@@ -18,8 +18,6 @@ jobs:
           node-version: '12'
       - name: Install Dependencies
         run: npm ci
-      - name: Build Project
-        run: npm run deploy
       - name: Run Unit Tests
         run: npm run test:ci
       - name: Update Chrome
