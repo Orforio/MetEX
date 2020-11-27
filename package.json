@@ -10,7 +10,7 @@
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
+    "e2e:ci": "ng e2e --prod --protractor-config=e2e/protractor-ci.conf.js",
     "codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
     "scully": "scully",
     "scully:serve": "scully serve",
