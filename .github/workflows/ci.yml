@@ -20,8 +20,8 @@ jobs:
         run: npm ci
       - name: Generate GraphQL
         run: npm run codegen
-			- name: Build
-				run: npm run build
+	    - name: Build
+	      run: npm run build
       - name: Run Unit Tests
         run: npm run test:ci
       - name: Update Chrome
