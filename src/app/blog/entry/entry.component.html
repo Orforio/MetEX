@@ -1,11 +1,13 @@
 <div class="jumbotron jumbotron-fluid py-4 mb-3">
 	<div class="container-fluid">
-		<h1 class="display-3">Development blog</h1>
+		<a routerLink='/blog' class="text-decoration-none">
+			<h1 class="display-3">Development blog</h1>
+		</a>
 	</div>
 </div>
 <div class="container-fluid" *ngIf="entry$ | async as entry">
 	<div class="row">
-		<div class="col">
+		<div class="col" id="content-blog-entry">
 			<h2>
 				{{entry?.title}}
 				<small>

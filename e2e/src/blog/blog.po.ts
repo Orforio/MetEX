@@ -8,7 +8,7 @@ export class BlogPage {
 	sampleEntry = {
 		title: 'Contact',
 		description: 'How to contact the author',
-		date: '5 Nov 2020',
+		date: '25 Nov 2020',
 		urlSlug: 'contact'
 	};
 
@@ -21,6 +21,6 @@ export class BlogPage {
 	}
 
 	getSampleEntry() {
-		return element(by.linkText(this.sampleEntry.title));
+		return element(by.partialLinkText(this.sampleEntry.title));
 	}
 }

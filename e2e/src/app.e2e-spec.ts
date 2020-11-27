@@ -86,7 +86,7 @@ describe('App Skeleton', () => {
 			expect(page.getFooter().getText()).toMatch('©');
 		});
 
-		xit('should link to the contacts page', () => {
+		it('should link to the contacts page', () => {
 			// Assert
 			expect(page.getFooterContactLink()).toBeDefined();
 			page.getFooterContactLink().click();
