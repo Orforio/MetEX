@@ -22,5 +22,7 @@ jobs:
         run: npm run deploy
       - name: Run Unit Tests
         run: npm run test:ci
+      - name: Update Chrome
+        run: sudo apt-get update && sudo apt-get install google-chrome-stable
       - name: Run E2E Tests
         run: npm run e2e:ci
