@@ -22,8 +22,6 @@ jobs:
         run: sudo apt-get update && sudo apt-get install google-chrome-stable
       - name: Generate GraphQL
         run: npm run codegen
-      - name: Build
-        run: npm run build --prod
       - name: Run Unit Tests
         run: npm run test:ci
       - name: Run E2E Tests
