@@ -5,15 +5,16 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "npm run codegen && ng build --prod && npm run scully",
+    "deploy": "npm run codegen && ng build --prod && npm run scully:ci",
     "test": "ng test",
     "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "e2e:ci": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "e2e:ci": "ng e2e --prod --protractor-config=e2e/protractor-ci.conf.js",
+    "codegen": "graphql-codegen --config codegen.yml -r dotenv/config",
     "scully": "scully",
-    "scully:serve": "scully serve"
+    "scully:serve": "scully serve",
+    "scully:ci": "scully -- --scanRoutes"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "@scullyio/scully": "^1.0.0",
     "apollo-angular": "^2.0.4",
     "bootstrap": "^4.5.0",
+    "dotenv": "^8.2.0",
     "factory.ts": "^0.5.1",
     "graphql": "^15.3.0",
     "ngx-markdown": "^10.1.1",
@@ -46,6 +48,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^10.0.1",
     "@angular-devkit/build-angular": "~0.1001.2",
     "@angular/cli": "~10.1.2",
     "@angular/compiler-cli": "~10.1.2",
@@ -60,6 +63,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "dotenv-webpack": "^5.1.0",
     "fast-xml-parser": "^3.17.4",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",

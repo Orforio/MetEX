@@ -1,5 +1,5 @@
 overwrite: true
-schema: "https://metex-cms.herokuapp.com/graphql"
+schema: "${API_URL}/graphql"
 documents: "./src/app/graphql/*.graphql"
 generates:
   src/generated/graphql.ts:

@@ -3,7 +3,9 @@ import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
-const uri = 'https://metex-cms.herokuapp.com/graphql';
+import { environment } from '../environments/environment';
+
+const uri = `${environment.apiUrl}/graphql`;
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 	return {
 		link: httpLink.create({uri}),
