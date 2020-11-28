@@ -90,7 +90,7 @@ describe('App Skeleton', () => {
 			// Assert
 			expect(page.getFooterContactLink()).toBeDefined();
 			page.getFooterContactLink().click();
-			expect(browser.getCurrentUrl()).toMatch('/blog/contact');
+			expect(browser.getCurrentUrl()).toMatch('/blog/about-and-contact');
 		})
 	});
 });

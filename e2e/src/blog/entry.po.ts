@@ -2,14 +2,14 @@ import { browser, by, element } from 'protractor';
 
 export class EntryPage {
 	navigateTo() {
-		return browser.get('/blog/contact');
+		return browser.get('/blog/about-and-contact');
 	}
 
 	sampleEntry = {
-		title: 'Contact',
-		entry: 'MétEX was created by Richard Whittaker',
+		title: 'About & Contact',
+		entry: 'Hello, and welcome to MétEX, the Paris Métro Experience',
 		date: '25 Nov 2020',
-		urlSlug: 'contact'
+		urlSlug: 'about-and-contact'
 	};
 
 	getHeading() {

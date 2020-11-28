@@ -6,10 +6,10 @@ export class BlogPage {
 	}
 
 	sampleEntry = {
-		title: 'Contact',
-		description: 'How to contact the author',
+		title: 'About & Contact',
+		description: 'About the site & how to contact the author',
 		date: '25 Nov 2020',
-		urlSlug: 'contact'
+		urlSlug: 'about-and-contact'
 	};
 
 	getHeading() {
