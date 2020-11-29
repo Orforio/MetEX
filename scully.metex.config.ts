@@ -65,14 +65,14 @@ export const config: ScullyConfig = {
 		'/lines/:slug': {
 			type: 'json',
 			slug: {
-				url: `${process.env.API_URL}/lines?_where[active]=true`,
+				url: `${process.env.API_URL}/lines`,
 				property: 'slug'
 			}
 		},
 		'/lines/:lineSlug/:stationSlug': {
 			type: 'json',
 			lineSlug: {
-				url: `${process.env.API_URL}/lines?_where[active]=true`,
+				url: `${process.env.API_URL}/lines`,
 				property: 'slug'
 			},
 			stationSlug: {
