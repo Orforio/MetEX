@@ -43,6 +43,11 @@
               "customWebpackConfig": {
                 "path": "webpack-prod.config.js"
               },
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                "src/manifest.webmanifest"
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

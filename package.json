@@ -15,7 +15,8 @@
     "scully": "scully",
     "scully:serve": "scully serve",
     "scully:ci": "scully -- --scanRoutes",
-    "icons": "npx pwa-asset-generator logo.html ./src/assets/icons -i ./src/index.html -m ./src/manifest.webmanifest -t png -i"
+    "icons": "npx pwa-asset-generator logo.html ./src/assets/icons -i ./src/index.html -m ./src/manifest.webmanifest -t png -i",
+    "pwa": "npm run deploy && http-server -p 8080 -c-1 dist/static"
   },
   "private": true,
   "dependencies": {
@@ -67,6 +68,7 @@
     "codelyzer": "^6.0.1",
     "dotenv-webpack": "^5.1.0",
     "fast-xml-parser": "^3.17.4",
+    "http-server": "^0.12.3",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.1",
