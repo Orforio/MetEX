@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 import { AppPage } from './app.po';
 
@@ -8,13 +8,6 @@ describe('App Skeleton', () => {
 	beforeEach(() => {
 		page = new AppPage();
 		browser.driver.manage().window().setSize(400, 700);
-	});
-
-	afterEach(async () => {
-		const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-		expect(logs).not.toContain(jasmine.objectContaining({
-			level: logging.Level.SEVERE,
-		} as logging.Entry));
 	});
 
 	describe('site navigation', () => {
@@ -91,6 +84,6 @@ describe('App Skeleton', () => {
 			expect(page.getFooterContactLink()).toBeDefined();
 			page.getFooterContactLink().click();
 			expect(browser.getCurrentUrl()).toMatch('/blog/about-and-contact');
-		})
+		});
 	});
 });
