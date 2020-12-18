@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 import { StationPage } from './station.po';
 
@@ -10,13 +10,6 @@ describe('Station Page', () => {
 		// Act
 		page = new StationPage();
 		page.navigateTo();
-	});
-
-	afterEach(async () => {
-		const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-		expect(logs).not.toContain(jasmine.objectContaining({
-			level: logging.Level.SEVERE,
-		} as logging.Entry));
 	});
 
 	it('should redirect when using a legacy URL', () => {

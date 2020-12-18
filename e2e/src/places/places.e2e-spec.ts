@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 import { PlacesPage } from './places.po';
 
@@ -10,13 +10,6 @@ describe('Places Page', () => {
 		// Act
 		page = new PlacesPage();
 		page.navigateTo();
-	});
-
-	afterEach(async () => {
-		const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-		expect(logs).not.toContain(jasmine.objectContaining({
-			level: logging.Level.SEVERE,
-		} as logging.Entry));
 	});
 
 	it('should display the heading', () => {

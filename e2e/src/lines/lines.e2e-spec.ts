@@ -1,4 +1,4 @@
-import { browser, logging } from 'protractor';
+import { browser } from 'protractor';
 
 import { LinesPage } from './lines.po';
 
@@ -10,13 +10,6 @@ describe('Lines Page', () => {
 		// Act
 		page = new LinesPage();
 		page.navigateTo();
-	});
-
-	afterEach(async () => {
-		const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-		expect(logs).not.toContain(jasmine.objectContaining({
-			level: logging.Level.SEVERE,
-		} as logging.Entry));
 	});
 
 	it('should display the heading', () => {
