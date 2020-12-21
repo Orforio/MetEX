@@ -4,8 +4,8 @@
 	command = "npm run deploy"
 
 [[redirects]]
-  from = "*/"
-	to = ":splat/index.html"
+  from = "/*"
+	to = "/:splat/index.html"
 	status = 200
 	force = false
 
