@@ -22,7 +22,7 @@ describe('Entry Page', () => {
 		page.getHeading().click();
 
 		// Assert
-		expect(browser.getCurrentUrl()).toMatch(/\/blog$/);
+		expect(browser.getCurrentUrl()).toMatch(/\/blog\/$/);
 	});
 
 	it('should display the Entry title', () => {
