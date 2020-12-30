@@ -9,7 +9,6 @@
         "files": [
           "/index.html",
           "/manifest.webmanifest",
-          "/**/*.html",
           "/**/data.json",
           "/*.css",
           "/*.js"
@@ -30,5 +29,7 @@
         ]
       }
     }
-  ]
+  ],
+  "navigationUrls": ["/**", "!/**/*.*", "!/**/*__*", "!/**/*__*/**"],
+  "navigationRequestStrategy": "freshness"
 }

@@ -63,6 +63,7 @@
     "@graphql-codegen/typescript": "1.17.8",
     "@graphql-codegen/typescript-apollo-angular": "^2.2.1",
     "@graphql-codegen/typescript-operations": "1.17.8",
+    "@scullyio/scully-plugin-flash-prevention": "^1.0.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.19.7",
