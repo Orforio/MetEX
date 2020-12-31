@@ -1,10 +1,14 @@
 import { ScullyConfig, setPluginConfig } from '@scullyio/scully';
 import { getHttp404Plugin } from '@gammastream/scully-plugin-http404';
+import { getFlashPreventionPlugin } from '@scullyio/scully-plugin-flash-prevention';
 import { getSitemapPlugin } from '@gammastream/scully-plugin-sitemap';
 
 require('dotenv').config();
 
 const Http404Plugin = getHttp404Plugin();
+const FlashPreventionPlugin = getFlashPreventionPlugin({
+	appRootSelector: 'metex-root'
+});
 const SitemapPlugin = getSitemapPlugin();
 
 setPluginConfig(SitemapPlugin, {
@@ -53,7 +57,11 @@ export const config: ScullyConfig = {
 	projectRoot: './src',
 	projectName: 'metex',
 	outDir: './dist/static',
-	defaultPostRenderers: [Http404Plugin],
+	defaultPostRenderers: [
+		Http404Plugin,
+		FlashPreventionPlugin,
+		'seoHrefOptimise'
+	],
 	routes: {
 		'/blog/:slug': {
 			type: 'json',
