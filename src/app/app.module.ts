@@ -4,7 +4,7 @@ import { UrlSerializer } from '@angular/router';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -33,7 +33,8 @@ import { environment } from '../environments/environment';
 			alwaysMonitor: true
 		}),
 		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-		SharedModule
+		SharedModule,
+		NgbModule
 	],
 	providers: [
 		Title,
