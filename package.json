@@ -36,7 +36,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@ng-bootstrap/ng-bootstrap": "^9.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@scullyio/init": "^1.0.1",
     "@scullyio/ng-lib": "^1.0.0",
     "@scullyio/scully": "^1.0.5",
