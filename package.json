@@ -1,6 +1,6 @@
 {
   "name": "metex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -44,15 +44,15 @@
     "bootstrap": "^4.5.3",
     "dotenv": "^8.2.0",
     "factory.ts": "^0.5.1",
-    "graphql": "^16.0.1",
+    "graphql": "^15.7.2",
     "ngx-markdown": "^12.0.1",
     "rxjs": "~6.6.0",
     "sass-color-helpers": "^2.1.1",
-    "tslib": "^2.0.3",
+    "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^10.0.1",
+    "@angular-builders/custom-webpack": "~12.1.3",
     "@angular-devkit/build-angular": "~12.2.13",
     "@angular/cli": "~12.2.13",
     "@angular/compiler-cli": "~12.2.13",
@@ -64,24 +64,24 @@
     "@graphql-codegen/typescript-apollo-angular": "^2.2.1",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@scullyio/scully-plugin-flash-prevention": "^1.0.0",
-    "@types/jasmine": "~3.6.0",
+    "@types/jasmine": "~3.8.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.19.7",
     "codelyzer": "^6.0.1",
     "dotenv-webpack": "^5.1.0",
     "fast-xml-parser": "^3.17.4",
     "http-server": "^0.12.3",
-    "jasmine-core": "~3.6.0",
+    "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.8",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
+    "karma-jasmine-html-reporter": "^1.7.0",
     "ng-mocks": "^12.5.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "^4.3.5"
+    "typescript": "~4.3.5"
   }
 }
