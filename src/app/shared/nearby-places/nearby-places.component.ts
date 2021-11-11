@@ -1,11 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { DeepExtractType } from 'ts-deep-extract-types';
 
-import { Maybe, Place } from '../../../generated/graphql';
-
-type NearbyPlaces = Maybe<Array<Maybe<(
-	{ __typename?: 'Place' }
-	& Pick<Place, 'name' | 'slug'>
-)>>> | null | undefined;
+import { StationQuery } from '../../../generated/graphql';
 
 @Component({
 	selector: 'metex-nearby-places',
@@ -13,7 +9,7 @@ type NearbyPlaces = Maybe<Array<Maybe<(
 	styleUrls: ['./nearby-places.component.scss']
 })
 export class NearbyPlacesComponent {
-	@Input() public places: NearbyPlaces;
+	@Input() public places: DeepExtractType<StationQuery, ['station', 'places']> | undefined | null = [];
 
 	constructor() { }
 }

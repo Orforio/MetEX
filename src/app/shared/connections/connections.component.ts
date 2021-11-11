@@ -1,15 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { DeepExtractType } from 'ts-deep-extract-types';
 
-import { Line, Maybe, Station } from '../../../generated/graphql';
-
-type ConnectionsStations = Maybe<Array<Maybe<(
-		{ __typename?: 'Station' }
-		& Pick<Station, 'id' | 'name' | 'slug'>
-		& { line?: Maybe<(
-			{ __typename?: 'Line' }
-			& Pick<Line, 'id' | 'name' | 'slug'>
-		)> }
-	)>>> | null | undefined;
+import { StationQuery } from '../../../generated/graphql';
 
 @Component({
 	selector: 'metex-connections',
@@ -18,7 +10,7 @@ type ConnectionsStations = Maybe<Array<Maybe<(
 })
 export class ConnectionsComponent {
 	@Input() public currentStation? = '';
-	@Input() public stations: ConnectionsStations = [];
+	@Input() public stations: DeepExtractType<StationQuery, ['station', 'interchange', 'stations']> | undefined | null = [];
 
 	constructor() { }
 }

@@ -1,11 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DeepExtractType } from 'ts-deep-extract-types';
 
-import { Maybe, UploadFile } from '../../../generated/graphql';
-
-type CarouselImages = Maybe<Array<Maybe<(
-	{ __typename?: 'UploadFile' }
-	& Pick<UploadFile, 'alternativeText' | 'url'>
-)>>> | null | undefined;
+import { StationQuery } from '../../../generated/graphql';
 
 @Component({
 	selector: 'metex-carousel',
@@ -13,7 +9,7 @@ type CarouselImages = Maybe<Array<Maybe<(
 	styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit {
-	@Input() public images: CarouselImages = [];
+	@Input() public images: DeepExtractType<StationQuery, ['station', 'images']> | undefined | null = [];
 	public showNavigationArrows = true;
 
 	constructor() { }

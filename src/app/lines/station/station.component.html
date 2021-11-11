@@ -15,7 +15,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-8" id="content-station-photos">
-				<metex-carousel *ngIf="station.station?.images" [images]="station.station?.images"></metex-carousel>
+				<metex-carousel *ngIf="station.station?.images && station.station?.images?.length" [images]="station.station?.images"></metex-carousel>
 			</div>
 			<div class="col-md-4" id="content-station-description">
 				<metex-ambient-sound *ngIf="station.station?.sound" [sound]="station.station?.sound"></metex-ambient-sound>
