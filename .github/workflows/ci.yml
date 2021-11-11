@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: '12'
+          node-version: '16'
       - name: Install Dependencies
         run: npm ci
       - name: Update Chrome
@@ -24,5 +24,3 @@ jobs:
         run: npm run codegen
       - name: Run Unit Tests
         run: npm run test:ci
-      - name: Run E2E Tests
-        run: npm run e2e:ci
