@@ -5,6 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
 	{ path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+	{ path: 'journeys', loadChildren: () => import('./journeys/journeys.module').then(m => m.JourneysModule) },
 	{ path: 'lines', loadChildren: () => import('./lines/lines.module').then(m => m.LinesModule) },
 	{ path: 'places', loadChildren: () => import('./places/places.module').then(m => m.PlacesModule) },
 	{ path: 'tour/:lineSlug/:stationSlug', redirectTo: 'lines/:lineSlug/:stationSlug' },
