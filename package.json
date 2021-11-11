@@ -48,6 +48,7 @@
     "ngx-markdown": "^12.0.1",
     "rxjs": "~6.6.0",
     "sass-color-helpers": "^2.1.1",
+    "ts-deep-extract-types": "^1.0.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
