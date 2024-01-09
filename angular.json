@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "metex",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",

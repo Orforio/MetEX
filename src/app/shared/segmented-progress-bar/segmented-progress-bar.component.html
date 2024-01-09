@@ -1,0 +1,9 @@
+<div class="segmented-progress-bar">
+	<ngb-progressbar *ngFor="let segment of segments; index as i"
+		type="dark"
+		[value]="calculateValue(i)"
+		height="30px"
+		[ngStyle]="{'width.%': calculateWidth(segment)}"
+		(click)="handleSegmentClick(i)">
+	</ngb-progressbar>
+</div>
