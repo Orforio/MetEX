@@ -42,7 +42,7 @@ export class AppPage {
 	}
 
 	getFooterContactLink() {
-		return element(by.linkText('Richard Whittaker'));
+		return element(by.linkText('Kit Whittaker'));
 	}
 
 	toggleNavBar() {
