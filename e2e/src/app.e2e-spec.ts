@@ -61,7 +61,7 @@ describe('App Skeleton', () => {
 			expect(page.getNavBarGithubLink().getText()).toMatch('Github');
 			browser.waitForAngularEnabled(false);
 			page.getNavBarGithubLink().click();
-			expect(browser.getCurrentUrl()).toMatch('https://github.com/PkerUNO/MetEX');
+			expect(browser.getCurrentUrl()).toMatch('https://github.com/Orforio/MetEX');
 			browser.waitForAngularEnabled(true);
 		});
 	});
